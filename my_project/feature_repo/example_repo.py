@@ -38,7 +38,8 @@ driver_hourly_stats_view = FeatureView(
         Field(name="acc_rate", dtype=Float32),
         Field(name="avg_daily_trips", dtype=Int64, description="Average daily trips"),
     ],
-    online=False,
+    # Tell FEAST to materialise into online store.
+    online=True,
     source=driver_hourly_stats,           # <--- Link to the raw data storage technology
     tags={"team": "driver_performance"},
 )
