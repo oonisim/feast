@@ -1,11 +1,22 @@
 project: my_project
 # By default, the registry is a file (but can be turned into a more scalable SQL-backed registry)
-registry: data/registry.db
+# registry: data/registry.db
 # SQLite SQL Registry does not work.
 # https://github.com/feast-dev/feast/issues/5565
-# registry:
-#   registry_type: sql
-#   path: sqlite:///data/registry.db
+registry:
+  registry_type: sql
+  path: sqlite:///data/registry.db
+  # SQLAlchemy Configuration advised at github.com/feast-dev/feast/issues/5565
+  # Did not work:
+  # sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+  # [SQL: INSERT INTO feast_metadata (project_id, metadata_key, metadata_value, last_updated_timestamp) VALUES (?, ?, ?, ?)]
+  # [parameters: ('my_project', 'last_updated_timestamp', '1756687000', 1756687000)]
+  sqlalchemy_config_kwargs:
+    echo: True
+    connect_args:
+      timeout: 30
+      check_same_thread: False
+
 # The provider primarily specifies default offline / online stores & storing the registry in a given cloud
 provider: local
 offline_store:
