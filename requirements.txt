@@ -1,1 +1,5 @@
-feast==0.51
+# Need >=0.54 to have the fix for https://github.com/feast-dev/feast/pull/5588
+# https://github.com/feast-dev/feast/issues/5565
+feast>=0.53
+jupyter==1.1.1
+notebook==7.4.5

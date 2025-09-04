@@ -7,4 +7,3 @@ for fv in feature_views:
     print(f"FeatureView: {fv.name}")
     for feature in fv.features:
         print(f"  Feature: {feature.name} ({feature.dtype})")
-
