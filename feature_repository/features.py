@@ -14,7 +14,15 @@ from feast.feature_logging import LoggingConfig
 from feast.infra.offline_stores.file_source import FileLoggingDestination
 from feast.types import Float32, Int64
 
-project = Project(name="my_project", description="A project for driver statistics")
+from utility import (
+    get_yaml_value
+)
+
+
+project = Project(
+    name=get_yaml_value("feature_store.yaml", "project", "my_project"),
+    description="A project for driver statistics"
+)
 
 driver_hourly_stats = FileSource(
     name="driver_hourly_stats_source",

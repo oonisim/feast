@@ -1,4 +1,4 @@
-project: my_project
+project: feature_store_tutorial
 # By default, the registry is a file (but can be turned into a more scalable SQL-backed registry)
 # registry: data/registry.db
 # SQLite SQL Registry does not work <- Fixed
@@ -6,8 +6,8 @@ project: my_project
 registry:
   registry_type: sql
   path: sqlite:///data/registry.db
-  sqlalchemy_config_kwargs:
-    echo: True
+  # sqlalchemy_config_kwargs:
+  #  echo: True                   # To show verbose SQLAlchemy operations.
   #  connect_args:
   #    timeout: 30
   #    check_same_thread: False
